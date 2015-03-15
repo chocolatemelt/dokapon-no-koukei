@@ -1,3 +1,5 @@
 *.un~
 *.psd
 *.proj
+bower_components
+node_modules
