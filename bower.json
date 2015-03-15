@@ -15,7 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "paper": "https://github.com/paperjs/paper.js",
-    "socket.io": "~1.3.5"
+    "socket.io": "~1.3.5",
+    "paper": "~0.9.22"
   }
 }
