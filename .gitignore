@@ -1,5 +1,9 @@
 *.un~
 *.psd
 *.proj
+*.logs
+*.pid
+*.seed
+logs
 bower_components
 node_modules
