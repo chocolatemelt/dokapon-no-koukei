@@ -1,2 +1,1 @@
-# dokapon-no-koukei
-Online web-based board game.
+A spiritual successor to Dokapon.
