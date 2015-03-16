@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "homepage": "https://github.com/chocolatemelt/dokapon-no-koukei",
   "authors": [
-    "Toshi Piazza <toshi.piazza@gmail.com>"
+    "Toshi Piazza <toshi.piazza@gmail.com>",
+    "Kevin Zhang <kzhaaang@gmail.com>",
+    "Tae Park <parkt2@rpi.edu>"
   ],
   "license": "MIT",
   "private": true,
