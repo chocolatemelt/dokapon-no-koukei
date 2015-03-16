@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    script(src='/socket.io/socket.io.js')
+    script var socket = io();
+    ul#messages
+    form(action='')
+        input(id='m',autocomplete='off')
+        button send
