@@ -10,11 +10,15 @@ var routes = require('./routes/index');
 
 var app = express();
 
+// some useful (?) constants (?) refactor/remove when necessary
+// these just make life easier
+var inDevelopment = app.get('env') === 'development';
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-if (app.get('env') === 'development') {
+if (inDevelopment) {
   app.locals.pretty = true;
 }
 
@@ -39,7 +43,7 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
+if (inDevelopment) {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
