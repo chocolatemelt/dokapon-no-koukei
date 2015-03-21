@@ -5,18 +5,37 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var chat   = require('./routes/chat');
 
 var app = express();
 
+// some useful (?) constants (?) refactor/remove when necessary
+// these just make life easier
+var inDevelopment = app.get('env') === 'development';
+
+mongoose.connect('mongodb://localhost/dokapon', function(err) {
+  if(err) {
+   console.log('connection error', err);
+  } else {
+   console.log('connection successful');
+  }
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+<<<<<<< HEAD
 // prettyprint
 app.locals.pretty = true;
+=======
+if (inDevelopment) {
+  app.locals.pretty = true;
+}
+>>>>>>> 558478983350f32140c6bad57566347c0cadfd3f
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -40,7 +59,7 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
+if (inDevelopment) {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
