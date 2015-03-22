@@ -25,4 +25,4 @@ Graphically, this game is in 2.5d at an angled, elevated view of the board.
 4. MongoDB and mongoose
 
 ##Mechanics, game information, and other stuff
-See [/docs](../tree/master/docs).
+See [/docs](../../tree/master/docs).
