@@ -1,4 +1,4 @@
-ドカポンの後継
+﻿ドカポンの後継
 ==============
 (dokapon-no-koukei)
 
@@ -12,12 +12,7 @@ Graphically, this game is in 2.5d at an angled, elevated view of the board.
  - In-game chat (just to work out socketing issues)
 
 ##To Install
- - Globally install nodemon: ```npm install -g nodemon```
- - Globally install bower: ```npm install -g bower```
- - Globally install grunt-cli: ```npm install -g grunt-cli```
- - ```git clone https://github.com/chocolatemelt/dokapon-no-koukei```
- - ```cd dokapon-no-koukei && npm install && bower install```
- - ```nodemon bin/www```
+ - ```npm install -g bower grunt-cli nodemon```
 
 ##Implementation
 1. node.js and express.js
