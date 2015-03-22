@@ -4,6 +4,7 @@
 *.logs
 *.pid
 *.seed
+*.db
 logs
 bower_components
 node_modules
