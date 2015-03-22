@@ -13,6 +13,7 @@ Graphically, this game is in 2.5d at an angled, elevated view of the board.
 
 ##To Install
  - Globally install nodemon: ```npm install -g nodemon```
+ - Globally install bower: ```npm install -g bower```
  - Globally install grunt-cli: ```npm install -g grunt-cli```
  - ```git clone https://github.com/chocolatemelt/dokapon-no-koukei```
  - ```cd dokapon-no-koukei && npm install && bower install```
