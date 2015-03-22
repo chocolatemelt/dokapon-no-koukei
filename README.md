@@ -15,9 +15,13 @@ Graphically, this game is in 2.5d at an angled, elevated view of the board.
  - ```git clone https://github.com/chocolatemelt/dokapon-no-koukei```
  - ```cd dokapon-no-koukei && npm install && bower install```
  - ```nodemon bin/www```
+ - note: if nodemon doesn't exist, run ```npm install -g nodemon```
 
 ##Implementation
 1. node.js and express.js
 2. socket.io
 3. paper.js and other WebGL Libraries
 4. MongoDB and mongoose
+
+##Mechanics, game information, and other stuff
+See /docs.
