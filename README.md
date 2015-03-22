@@ -12,10 +12,11 @@ Graphically, this game is in 2.5d at an angled, elevated view of the board.
  - In-game chat (just to work out socketing issues)
 
 ##To Install
+ - Globally install nodemon: ```npm install -g nodemon```
+ - Globally install grunt-cli: ```npm install -g grunt-cli```
  - ```git clone https://github.com/chocolatemelt/dokapon-no-koukei```
  - ```cd dokapon-no-koukei && npm install && bower install```
  - ```nodemon bin/www```
- - note: if nodemon doesn't exist, run ```npm install -g nodemon```
 
 ##Implementation
 1. node.js and express.js
@@ -24,4 +25,4 @@ Graphically, this game is in 2.5d at an angled, elevated view of the board.
 4. MongoDB and mongoose
 
 ##Mechanics, game information, and other stuff
-See /docs.
+See [/docs](../tree/master/docs).
