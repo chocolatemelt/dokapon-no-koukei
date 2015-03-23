@@ -16,8 +16,13 @@ Graphically, this game is in 2.5d at an angled, elevated view of the board.
 $ npm install -g bower grunt-cli nodemon
 $ git clone https://github.com/chocolatemelt/dokapon-no-koukei
 $ cd dokapon-no-koukei && npm install && bower install
-$ nodemon bin/www
 ```
+
+##Running the server
+```
+$ nodemon [--debug] bin/www [port]
+```
+Port defaults to 3000 when unspecified.
 
 ##Implementation
 1. node.js and express.js
