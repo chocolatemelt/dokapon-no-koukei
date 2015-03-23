@@ -28,14 +28,9 @@ mongoose.connect('mongodb://localhost/dokapon', function(err) {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-<<<<<<< HEAD
-// prettyprint
-app.locals.pretty = true;
-=======
 if (inDevelopment) {
   app.locals.pretty = true;
 }
->>>>>>> 558478983350f32140c6bad57566347c0cadfd3f
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
