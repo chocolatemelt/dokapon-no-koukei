@@ -11,11 +11,13 @@ Graphically, this game is in 2.5d at an angled, elevated view of the board.
  - Game mechanics rough sketch
  - In-game chat (just to work out socketing issues)
 
-##To Install
- - ```npm install -g bower grunt-cli nodemon```
- - ```git clone https://github.com/chocolatemelt/dokapon-no-koukei```
- - ```cd dokapon-no-koukei && npm install && bower install```
- - ```nodemon bin/www```
+##Installation
+```
+$ npm install -g bower grunt-cli nodemon
+$ git clone https://github.com/chocolatemelt/dokapon-no-koukei
+$ cd dokapon-no-koukei && npm install && bower install
+$ nodemon bin/www
+```
 
 ##Implementation
 1. node.js and express.js
