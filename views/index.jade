@@ -1,7 +1,5 @@
 extends layout
 
 block content
-  canvas#canvas
-  script(src='/js/paper.js')
-  script(src='/js/main.js')
-  script(type='text/paperscript',canvas='canvas',src='/js/drawBoard.pjs',id='paperscript')
+  h1= title
+  p Welcome to #{title}
