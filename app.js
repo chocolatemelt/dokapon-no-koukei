@@ -5,6 +5,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
 
 var routes = require('./routes/index');
 
@@ -14,10 +16,33 @@ var app = express();
 // these just make life easier
 var inDevelopment = app.get('env') === 'development';
 
+// tells express to initialize passport
+app.use(passport.initialize());
+
+// sets up our strategy for verifying passwords
+// TODO: should we use sessions? If so then we might have to make a 
+//  session secret which should be regularly updated, and that we should
+//  not allow on the github repo
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+      User.findOne({ username: username }, function (err, user) {
+        if (err) { return done(err); }
+        if (!user) {
+          return done(null, false, { message: 'Incorrect username.' });
+        }
+        if (!user.validPassword(password)) {
+          return done(null, false, { message: 'Incorrect password.' });
+        }
+      return done(null, user);
+    });
+  }
+));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// tells jade to use pretty html
 if (inDevelopment) {
   app.locals.pretty = true;
 }
