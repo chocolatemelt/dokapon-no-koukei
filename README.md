@@ -10,6 +10,7 @@ Graphically, this game is in 2.5d at an angled, elevated view of the board.
  - GUI mockup
  - Game mechanics rough sketch
  - In-game chat (just to work out socketing issues)
+ - Remove mobile support by serving separate page/sheet (debatable?)
 
 ##Installation
 ```
