@@ -20,7 +20,7 @@ Hidden stats:
 ##Starting
 Characters are created with a name and a class. No stat points are allocated; instead, they are randomly rolled (without significant variation) based on player input. For example, see below table:
 Stat | Player A | Player B
-==== | ======== | ========
+---- | -------- | --------
 Talents | (+STR,-DEX) | (+DEX,-INT)
 STR | 23 | 15
 DEX | 8 | 22
