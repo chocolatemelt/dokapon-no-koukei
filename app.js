@@ -1,4 +1,5 @@
 var express = require('express');
+var socketIO = require('socket.io');
 var colors = require('colors');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -12,7 +13,12 @@ var routes = require('./routes/index');
 var login  = require('./routes/login');
 var chat   = require('./routes/chat');
 
+// express
 var app = express();
+
+// socket.io
+var io = socketIO();
+app.io = io;
 
 // some useful (?) constants (?) refactor/remove when necessary
 // these just make life easier
@@ -91,5 +97,12 @@ app.use(function(err, req, res, next) {
   });
 });
 
+// user connect/disconnect
+io.on('connection', function(socket){
+    console.log('a user connected');
+    socket.on('disconnect', function(){
+        console.log('a user disconnected');
+    });
+});
 
 module.exports = app;
