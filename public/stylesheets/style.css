@@ -9,6 +9,8 @@
  * important text 2: #C64727; (orange)
  * important text 3: #887706; (light orange)
  * If changing colors, please run a search and replace so no color gets left behind.
+ * TODO:
+ * scroll to bottom when new messages appear
 \* ============================================================================= */
 
 body {
@@ -23,13 +25,13 @@ a {
 
 /* ====== CHAT ====== */
 form {
-	font: .8em 'Fira Mono', Consolas, monospace;
 	position: fixed;
 	bottom: 0;
 	width: 100%;
 }
 
 form input {
+	font: .8em 'Fira Mono', Consolas, monospace;
 	background: #073642;
 	color: #8CA1A1;
 	border: 0;
