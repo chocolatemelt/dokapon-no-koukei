@@ -1,4 +1,15 @@
-/* currently: solarized dark theme */
+/* ============================================================================
+ * CORE STYLESHEET
+ * Main font: Fira Mono / monospace
+ * Colors:
+ * body / background: #073642;
+ * input boxes: #073642;
+ * normal text: #8CA1A1;
+ * important text 1: #2689B2; (blue)
+ * important text 2: #C64727; (orange)
+ * important text 3: #887706; (light orange)
+ * If changing colors, please run a search and replace so no color gets left behind.
+\* ============================================================================= */
 
 body {
 	background: #002B36;
@@ -12,6 +23,7 @@ a {
 
 /* ====== CHAT ====== */
 form {
+	font: .8em 'Fira Mono', Consolas, monospace;
 	position: fixed;
 	bottom: 0;
 	width: 100%;
