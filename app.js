@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session')
 var socketIO = require('socket.io');
 var colors = require('colors');
 var path = require('path');
@@ -10,6 +11,7 @@ var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 
 var routes = require('./routes/index');
+var logout = require('./routes/logout');
 var login  = require('./routes/login');
 var chat   = require('./routes/chat');
 
@@ -24,16 +26,34 @@ app.io = io;
 // these just make life easier
 var inDevelopment = app.get('env') === 'development';
 
-// tells express to initialize passport
+// tells express to initialize passport and add session support
+// TODO: in production, we will use a secret that is automatically 
+// generated every few days
+app.use(session({
+  resave: true,
+  saveUninitialized: false,
+  secret: 'keyboard cat' 
+}));
 app.use(passport.initialize());
+app.use(passport.session());
+
+// setting functions for use by passport session
+// which define what is being stored as a cookie
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  findById(id, function (err, user) {
+    done(err, user);
+  });
+});
 
 // sets up our strategy for verifying passwords
-// TODO: should we use sessions? If so then we might have to make a 
-//  session secret which should be regularly updated, and that we should
-//  not allow on the github repo
+// TODO: set up a user object for a database
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
+    Users.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
@@ -55,6 +75,8 @@ if (inDevelopment) {
   app.locals.pretty = true;
 }
 
+// TODO: in production we will configure nginx as a reverse proxy
+// so we do not need to use the static content and favicon stuff
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -65,6 +87,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/chat', chat);
 app.use('/login', login);
+app.use('/logout', logout);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
