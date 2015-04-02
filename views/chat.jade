@@ -1,10 +1,10 @@
 extends layout
 
 block content
-    script(src='/socket.io/socket.io.js')
-    script(src='http://code.jquery.com/jquery-1.11.1.js')
-    script(src='/js/chat.js')
-    ul#messages
-    form(action='')
-        input(id='m',autocomplete='off')
-        // button send
+  ul#messages
+  form.chat(action='')
+    input(id='m',autocomplete='off')
+    // button send
+  script(src='/socket.io/socket.io.js')
+  script(src='http://code.jquery.com/jquery-1.11.1.js')
+  script(src='/js/chat.js')

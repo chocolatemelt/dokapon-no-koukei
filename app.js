@@ -99,16 +99,16 @@ app.use(function(err, req, res, next) {
 
 // socket stuff - hopefully we can put this in a separate file
 io.on('connection', function(socket) {
-      console.log('a user connected');
-      io.emit('chat message', 'a user connected');
-      socket.on('disconnect', function() {
-          console.log('a user disconnected');
-          io.emit('chat message', 'a user disconnected');
-      });
-      socket.on('chat message', function(msg) {
-          console.log('message: ' + msg);
-          io.emit('chat message', msg);
-      });
+  console.log('a user connected');
+  io.emit('chat message', 'a user connected');
+  socket.on('disconnect', function() {
+    console.log('a user disconnected');
+    io.emit('chat message', 'a user disconnected');
+  });
+  socket.on('chat message', function(msg) {
+    console.log('message: ' + msg);
+    io.emit('chat message', msg);
+  });
 });
 
 module.exports = app;

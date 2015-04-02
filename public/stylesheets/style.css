@@ -24,13 +24,13 @@ a {
 }
 
 /* ====== CHAT ====== */
-form {
+form.chat {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
 }
 
-form input {
+form.chat input {
 	font: .8em 'Fira Mono', Consolas, monospace;
 	background: #073642;
 	color: #8CA1A1;
