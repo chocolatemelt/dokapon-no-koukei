@@ -1,6 +1,8 @@
 extends layout
 
 block content
+  - if (message !== null)
+    p= message
   form#login(action='/login' method='post')
     div
       label Username: 

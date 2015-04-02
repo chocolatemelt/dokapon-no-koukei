@@ -9,6 +9,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
+var flash = require('connect-flash');
+var mongodb  = require('mongodb');
+var mongoose = require('mongoose');
+var userSchema = require('./models/users.js');
 
 var routes = require('./routes/index');
 var logout = require('./routes/logout');
@@ -21,6 +25,15 @@ var app = express();
 // socket.io
 var io = socketIO();
 app.io = io;
+
+// mongoose connection utility
+mongoose.connect('mongodb://localhost/dokapon', function(err) {
+  if(err) {
+   console.log('connection error', err);
+  } else {
+   console.log('connection successful');
+  }
+});
 
 // some useful (?) constants (?) refactor/remove when necessary
 // these just make life easier
@@ -36,6 +49,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash()); // allows us to use flash messages
 
 // setting functions for use by passport session
 // which define what is being stored as a cookie
@@ -51,9 +65,11 @@ passport.deserializeUser(function(id, done) {
 
 // sets up our strategy for verifying passwords
 // TODO: set up a user object for a database
+// defines User object
+var userModel = mongoose.model('User', userSchema);
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    Users.findOne({ username: username }, function (err, user) {
+    userModel.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });

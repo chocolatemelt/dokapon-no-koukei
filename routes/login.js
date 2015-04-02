@@ -5,7 +5,8 @@ var passport = require('passport');
 
 /* login page */
 router.get('/', function (req, res, next) {
-  res.render('login', { title: 'Login' });
+  res.render('login', { title: 'Login', 
+                        message: req.flash('error') });
 });
 
 /* login credentials sent through post */
