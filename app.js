@@ -11,7 +11,9 @@ var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
 var mongodb  = require('mongodb');
+var Db = mongodb.Db;
 var mongoose = require('mongoose');
+var mongoStore = require('express-session-mongo');
 var userSchema = require('./models/users.js');
 
 var routes = require('./routes/index');
@@ -42,11 +44,14 @@ var inDevelopment = app.get('env') === 'development';
 // tells express to initialize passport and add session support
 // TODO: in production, we will use a secret that is automatically 
 // generated every few days
+// TODO: we will flush hour old cookies every 60 seconds
 app.use(session({
-  resave: true,
+  store: new mongoStore(), // needed because default memorystore is 
+  resave: true,            // not viable in production
   saveUninitialized: false,
   secret: 'keyboard cat' 
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash()); // allows us to use flash messages
@@ -64,8 +69,6 @@ passport.deserializeUser(function(id, done) {
 });
 
 // sets up our strategy for verifying passwords
-// TODO: set up a user object for a database
-// defines User object
 var userModel = mongoose.model('User', userSchema);
 passport.use(new LocalStrategy(
   function(username, password, done) {
