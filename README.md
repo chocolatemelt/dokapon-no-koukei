@@ -25,6 +25,14 @@ $ cd dokapon-no-koukei && npm install && bower install
 $ nodemon [--debug] bin/www [port]
 ```
 Port defaults to 3000 when unspecified.
+###Note
+In production it is advised to call `db.sessions.ensureIndex( { "lastAccess": 1 }, { expireAfterSeconds: 3600 } )` from the mongo command line. This makes sure that all sessions are flushed after an hour of inactivity. This results is much smaller database sizes and more reliability.
+```
+$ mongo
+> use dokapon
+> db.sessions.ensureIndex( { "lastAccess": 1 }, { expireAfterSeconds: 3600 } )
+> CTRL-C
+```
 
 ##Implementation
 1. node.js and express.js

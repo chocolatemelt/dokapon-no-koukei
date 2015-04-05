@@ -11,7 +11,6 @@ var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
 var mongodb  = require('mongodb');
-var Db = mongodb.Db;
 var mongoose = require('mongoose');
 var mongoStore = require('express-session-mongo');
 var userSchema = require('./models/users.js');
@@ -37,17 +36,15 @@ mongoose.connect('mongodb://localhost/dokapon', function(err) {
   }
 });
 
-// some useful (?) constants (?) refactor/remove when necessary
 // these just make life easier
 var inDevelopment = app.get('env') === 'development';
 
 // tells express to initialize passport and add session support
 // TODO: in production, we will use a secret that is automatically 
 // generated every few days
-// TODO: we will flush hour old cookies every 60 seconds
 app.use(session({
-  store: new mongoStore(), // needed because default memorystore is 
-  resave: true,            // not viable in production
+  store: new mongoStore({ db: 'dokapon' }), // needed because default memorystore is 
+  resave: true,                             // not viable in production
   saveUninitialized: false,
   secret: 'keyboard cat' 
 }));
@@ -77,10 +74,14 @@ passport.use(new LocalStrategy(
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
+      user.comparePassword(password, function (err, isMatch) {
+        if (err) return done(err);
+        if(isMatch) {
+          return done(null, user);
+        } else {
+          return done(null, false, { message: 'Incorrect password.' });
+        }
+      });
     });
   }
 ));
