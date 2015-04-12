@@ -1,6 +1,6 @@
 var express = require('express');
 var session = require('express-session')
-var socketIO = require('socket.io');
+var socketInit = require('./socketInit.js');
 var colors = require('colors');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -23,8 +23,7 @@ var chat   = require('./routes/chat');
 var app = express();
 
 // socket.io
-var io = socketIO();
-app.io = io;
+app.io = socketInit();
 
 // mongoose connection utility
 mongoose.connect('mongodb://localhost/dokapon', function(err) {
@@ -105,20 +104,6 @@ app.use(function(err, req, res, next) {
   res.render('error', {
     message: err.message,
     error: {}
-  });
-});
-
-// socket stuff - hopefully we can put this in a separate file
-io.on('connection', function(socket) {
-  console.log('a user connected');
-  io.emit('chat message', 'a user connected');
-  socket.on('disconnect', function() {
-    console.log('a user disconnected');
-    io.emit('chat message', 'a user disconnected');
-  });
-  socket.on('chat message', function(msg) {
-    console.log('message: ' + msg);
-    io.emit('chat message', msg);
   });
 });
 
