@@ -86,6 +86,16 @@ passport.use(new LocalStrategy(
   }
 ));
 
+// DEBUGGING BAD JUJU
+var usr = new userModel(
+  { username: 'testbug',
+    password: 'passwd123',
+    email: 'kzaaang@gmail.com' });
+usr.save(function(err) {
+  /* NO-OP */
+});
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -103,6 +113,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'controllers')));
 
 app.use('/', routes);
 app.use('/chat', chat);
