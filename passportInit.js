@@ -15,7 +15,7 @@ var passportInit = function() {
   });
 
   passport.deserializeUser(function(id, done) {
-    findById(id, function(err, user) {
+    userModel.findById(id, function(err, user) {
       done(err, user);
     });
   });
@@ -42,4 +42,4 @@ var passportInit = function() {
   ));
 };
 
-module.exports = passportInit();
+module.exports = passportInit;

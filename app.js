@@ -8,13 +8,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passportInit = require('./passportInit.js');
-var passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy;
+var passport = require('passport');
 var flash = require('connect-flash');
 var mongodb  = require('mongodb');
 var mongoose = require('mongoose');
 var mongoStore = require('express-session-mongo');
-var userSchema = require('./models/users.js');
 
 var routes = require('./routes/index');
 var logout = require('./routes/logout');
@@ -50,6 +48,7 @@ app.use(session({
   secret: 'keyboard cat' 
 }));
 
+passportInit();
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash()); // allows us to use flash messages
