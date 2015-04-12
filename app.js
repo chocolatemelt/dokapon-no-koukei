@@ -7,7 +7,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var passportInit = require('./passportInit.js');
 var passport = require('passport');
 var flash = require('connect-flash');
 var mongodb  = require('mongodb');
@@ -17,14 +16,16 @@ var mongoStore = require('express-session-mongo');
 var routes = require('./routes/index');
 var logout = require('./routes/logout');
 var login  = require('./routes/login');
+var signup = require('./routes/signup');
 var chat   = require('./routes/chat');
 
-// express
+// our personal init functions
+var passportInit = require('./passportInit.js');
 var app = express();
-
-// socket.io
 var io = socketIO();
 app.io = io;
+
+var inDevelopment = app.get('env') === 'development';
 
 // mongoose connection utility
 mongoose.connect('mongodb://localhost/dokapon', function(err) {
@@ -34,9 +35,6 @@ mongoose.connect('mongodb://localhost/dokapon', function(err) {
    console.log('connection successful');
   }
 });
-
-// these just make life easier
-var inDevelopment = app.get('env') === 'development';
 
 // tells express to initialize passport and add session support
 // TODO: in production, we will use a secret that is automatically 
@@ -76,6 +74,7 @@ app.use('/', routes);
 app.use('/chat', chat);
 app.use('/login', login);
 app.use('/logout', logout);
+app.use('/signup', signup);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

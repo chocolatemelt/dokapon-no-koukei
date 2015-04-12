@@ -22,9 +22,9 @@ var passportInit = function() {
 
   // set strategy for password verification
   var userModel = mongoose.model('User', userSchema);
-  passport.use(new LocalStrategy(
+  passport.use('login', new LocalStrategy(
     function(username, password, done) {
-      userModel.findOne({ username: username }, function(err, user) {
+      userModel.findOne({ 'username': username }, function(err, user) {
         if (err) { return done(err); }
         if (!user) {
           return done(null, false, { message: 'Incorrect username.' });
@@ -40,6 +40,42 @@ var passportInit = function() {
       });
     }
   ));
+
+  passport.use('signup', new LocalStrategy({
+      passReqToCallback: true
+    },
+    function (req, username, password, done) {
+      findOrCreateUser = function () {
+        userModel.findOne({ 'username': username }, function (err, user) {
+          if (err) { return done(err); }
+          if (user) {
+            return done(null, false, { message: 'User already exists.' });
+          } else {
+            // inserting into the database 
+            // automatically hashes for us
+            var newUser = new userModel(
+              { 'username': username,
+                'password': password,
+                'email': req.body.email })
+            
+            // save user
+            newUser.save(function (err) {
+              if (err) {
+                console.log('Error in saving user: ' + err);
+                throw err;
+              }
+              return done(null, newUser);
+            });
+          }
+        });
+      };
+    
+      // delay execution of findOrCreateUser and execute
+      // the method in the next tick of the event loop
+      process.nextTick(findOrCreateUser);
+    })
+  );
+    
 };
 
 module.exports = passportInit;

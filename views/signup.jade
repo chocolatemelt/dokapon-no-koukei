@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  - if (message !== null)
+    p= message
+  form#signup(action='/signup' method='post')
+    div
+      label Username: 
+      input(type='text' name='username')
+    div
+      label Password: 
+      input(type='password' name='password')
+    div
+      label Email:
+      input(type='text' name='email')
+    div: input(type='submit' value='Sign Up')
+
