@@ -33,4 +33,14 @@ userSchema.methods.comparePassword = function(candidatePassword, cb) {
   });
 };
 
-module.exports = mongoose.model('User', userSchema);
+// DEBUGGING BAD JUJU
+var userModel = mongoose.model('User', userSchema);
+var usr = new userModel(
+  { username: 'testbug',
+    password: 'passwd123',
+    email: 'kzaaang@gmail.com' });
+usr.save(function(err) {
+  /* NO-OP */
+});
+
+module.exports = userModel;
