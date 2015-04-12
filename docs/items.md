@@ -13,4 +13,7 @@ League Account | Single | Self | Cannot move or use items for 1-5 turns. Lose 15
 Magpie | Multi | Character | 50% chance to take an item from target character. Disappears upon failure.
 Crow | Multi | Character | 50% chance to take an item from target character. 25% chance to afflict target character. Disappears upon failure.
 Raven | Multi | Character | 50% chance to take an item from target character. On success, 10% chance to replace item with Marked for Death. Disappears upon failure.
-Questionable Mushroom | Single | Self/Trap | Afflicts target with random mushroom-related affliction. (reword?)
+Questionable Mushroom | Single | Self/Trap | Afflicts target with random mushroom-related affliction.
+Weak Antidote | Single | Character | 50% chance to clear Poison.
+Antidote | Single | Character | Clears some Poison.
+Strong Antidote | Single | Character | Clears most Poison afflictions.
