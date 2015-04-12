@@ -7,6 +7,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passportInit = require('./passportInit.js');
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
@@ -52,39 +53,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash()); // allows us to use flash messages
-
-// setting functions for use by passport session
-// which define what is being stored as a cookie
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  findById(id, function (err, user) {
-    done(err, user);
-  });
-});
-
-// sets up our strategy for verifying passwords
-var userModel = mongoose.model('User', userSchema);
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    userModel.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      user.comparePassword(password, function (err, isMatch) {
-        if (err) return done(err);
-        if(isMatch) {
-          return done(null, user);
-        } else {
-          return done(null, false, { message: 'Incorrect password.' });
-        }
-      });
-    });
-  }
-));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
