@@ -1,17 +1,14 @@
 extends layout
 
 block content
-  - if (message !== null)
-    p= message
-  form#signup(action='/signup' method='post')
-    div
-      label Username: 
-      input(type='text' name='username')
-    div
-      label Password: 
-      input(type='password' name='password')
-    div
-      label Email:
-      input(type='text' name='email')
-    div: input(type='submit' value='Sign Up')
-
+  -if (message !== null)
+  p= message
+  div(id='bigbox')
+    h1 // sign up
+    form#signup(action='/signup' method='post')
+      input(type='text' name='username' placeholder='username')
+      input(type='text' name='email' placeholder='email')
+      input(type='password' name='password' placeholder='password')
+      input(type='submit' value=';')
+      // placeholder isn't completely cross-browser compatible. jquery can do it; not sure about angular/bootstrap?
+    a(href='/login') login();
