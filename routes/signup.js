@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
 /* signup newuser credentials sent through post */
 router.post('/',
   passport.authenticate('signup', { successRedirect: '/',
-                                   failureRedirect: '/login',
+                                   failureRedirect: '/signup',
                                    failureFlash: true })
 );
 
