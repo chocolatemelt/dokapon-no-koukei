@@ -40,7 +40,9 @@ var usr = new userModel(
     password: 'passwd123',
     email: 'kzaaang@gmail.com' });
 usr.save(function(err) {
-  /* NO-OP */
+  // because this gets called every time we start
+  // the application there should be an error that there
+  // are duplicates; we can ignore this particular warning
 });
 
 module.exports = userModel;

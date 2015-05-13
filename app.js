@@ -42,13 +42,13 @@ app.use(session({
   store: new mongoStore({ db: 'dokapon' }), // needed because default memorystore is 
   resave: true,                             // not viable in production
   saveUninitialized: false,
-  secret: 'keyboard cat' 
+  secret: 'keyboard cat'
 }));
 
-passportInit();
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash()); // allows us to use flash messages
+passportInit();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

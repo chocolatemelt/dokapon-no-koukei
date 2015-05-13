@@ -4,8 +4,7 @@ var flash = require('connect-flash');
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var mongoStore = require('express-session-mongo');
-var userSchema = require('./models/users.js');
-var userModel = mongoose.model('User', userSchema);
+var userModel = require('./models/users.js');
 
 var passportInit = function() {
   // set functions for use by passport session
@@ -21,7 +20,6 @@ var passportInit = function() {
   });
 
   // set strategy for password verification
-  var userModel = mongoose.model('User', userSchema);
   passport.use('login', new LocalStrategy(
     function(username, password, done) {
       userModel.findOne({ 'username': username }, function(err, user) {
@@ -57,7 +55,7 @@ var passportInit = function() {
               { 'username': username,
                 'password': password,
                 'email': req.body.email })
-            
+
             // save user
             newUser.save(function (err) {
               if (err) {
@@ -69,13 +67,13 @@ var passportInit = function() {
           }
         });
       };
-    
+
       // delay execution of findOrCreateUser and execute
       // the method in the next tick of the event loop
       process.nextTick(findOrCreateUser);
     })
   );
-    
+
 };
 
 module.exports = passportInit;
