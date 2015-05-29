@@ -31,6 +31,6 @@ var playerSchema = new mongoose.Schema({
    /* TODO: Items? */
 });
 
-var playerModel = mongoose.model('Player', userSchema);
+var playerModel = mongoose.model('Player', playerSchema);
 
 module.exports = playerModel;
