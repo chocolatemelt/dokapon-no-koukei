@@ -28,8 +28,20 @@ var playerSchema = new mongoose.Schema({
    statINT: { type: Number },
    statMorality: { type: Number },
    statLuck: { type: Number }
-   /* TODO: Items? */
+   /* ITEMS
+    * Items will be added by id (as a number). Max bag size of 10.
+    * bag is the bag, of course.
+    */
+    bag: [Number]
 });
+
+/* == FUNCTIONS == */
+playerSchema.methods.getTrueName = function() { return this.trueName; }
+playerSchema.methods.getDispName = function() { return this.displayName; }
+
+playerSchema.methods.create = function() {
+  // create a new player
+}
 
 var playerModel = mongoose.model('Player', playerSchema);
 
