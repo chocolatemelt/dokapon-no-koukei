@@ -1,9 +1,6 @@
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
-var flash = require('connect-flash');
-var mongodb = require('mongodb');
 var mongoose = require('mongoose');
-var mongoStore = require('express-session-mongo');
 var userModel = require('./models/users.js');
 
 var passportInit = function() {
