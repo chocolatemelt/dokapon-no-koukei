@@ -10,8 +10,6 @@ Graphically, this game is in 2.5d at an angled, elevated view of the board. (...
  - Finish concept abstract
  - GUI mockup
  - Game mechanics rough sketch
- - Refactoring code? Chat in its own file, game in another, etc
- - Classes/objects?
 
 ##Installation
 ```
@@ -25,6 +23,7 @@ $ cd dokapon-no-koukei && npm install && bower install
 $ nodemon [--debug] bin/www [port]
 ```
 Port defaults to 3000 when unspecified.
+
 ###Note
 In production it is advised to call `db.sessions.ensureIndex( { "lastAccess": 1 }, { expireAfterSeconds: 3600 } )` from the mongo command line. This makes sure that all sessions are flushed after an hour of inactivity. This results is much smaller database sizes and more reliability.
 ```
@@ -44,3 +43,8 @@ Upon switching from express-session-mongo to mongo-connect, it is now unclear wh
 
 ##Mechanics, game information, and other stuff
 See [/docs](../../tree/master/docs).
+
+##Ideas / Brainstorming
+ - 10 items to a bag?
+ - Players can login and play whenever - turns are taken when possible and then a changelog is prepared for events between log-ins (for example, 4 players with different timezones can play nonsynchronously by taking their turn when it's available and viewing a recent changelog of events)
+ - Find a way to progress games should a player not be available
