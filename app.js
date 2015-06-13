@@ -1,6 +1,4 @@
 var express = require('express');
-var session = require('express-session')
-var socketInit = require('./socketInit.js');
 var colors = require('colors');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -9,9 +7,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var flash = require('connect-flash');
-var mongodb  = require('mongodb');
 var mongoose = require('mongoose');
-var mongoStore = require('express-session-mongo');
+var session = require('express-session');
+var mongoStore = require('connect-mongo')(session);
 
 var routes = require('./routes/index');
 var logout = require('./routes/logout');
@@ -20,7 +18,9 @@ var signup = require('./routes/signup');
 var chat   = require('./routes/chat');
 
 // our personal init functions
+var socketInit = require('./socketInit.js');
 var passportInit = require('./passportInit.js');
+
 var app = express();
 app.io = socketInit();
 
@@ -39,8 +39,9 @@ mongoose.connect('mongodb://localhost/dokapon', function(err) {
 // TODO: in production, we will use a secret that is automatically 
 // generated every few days
 app.use(session({
-  store: new mongoStore({ db: 'dokapon' }), // needed because default memorystore is 
-  resave: true,                             // not viable in production
+  store: new mongoStore(
+    { mongooseConnection: mongoose.connection }), // needed because default memorystore is 
+  resave: true,                                   // not viable in production
   saveUninitialized: false,
   secret: 'keyboard cat'
 }));

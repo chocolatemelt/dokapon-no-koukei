@@ -33,6 +33,8 @@ $ mongo
 > db.sessions.ensureIndex( { "lastAccess": 1 }, { expireAfterSeconds: 3600 } )
 > CTRL-C
 ```
+###Note again
+Upon switching from express-session-mongo to mongo-connect, it is now unclear whether we need to even call the above statment from mongodb. More research needs to be done in order to fully understand.
 
 ##Implementation
 1. node.js and express.js
