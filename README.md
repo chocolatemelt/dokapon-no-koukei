@@ -1,6 +1,10 @@
 ﻿ドカポンの後継者
 ===============
 
+## Succeeded by Kadopon Village...
+Fundamental implementation issues mean this repository is now obsolete;
+check out the Redux/React implementation [here](https://github.com/chocolatemelt/dokapon-no-koukeisha.git). Keeping this around for legacy (and as a fond reminder of my freshman days).
+
 ## Concept
 
 A JRPG / Monopoly inspired browser-based board game. Essentially a cleaner, better, balanced and more feature-rich Dokapon Kingdom. Our inspirations come from the aforementioned Monopoly and Dokapon Kingdom as well as the popular Nintendo series Mario Party. Essentially, this game strives to reward better playing choices and management over luck, without removing the gambling-esque RNG element of all board games. This game also hopes to solve the problems of balance and relative power levels generally present in these board games; for example, in Monopoly, generally the strongest players get stronger faster while the weakest players struggle to remain relevant. Dokapon Kingdom is fairly similar - though there are elements in play where a weaker player can still gain traction, as well as a unique “board reset” mechanic that is arguably extremely frustrating and toxic. Finally, Mario Party has multiple ways for players to “steal” from each other as well as strange and sometimes frustrating random mechanics that can completely change the game. (...)
