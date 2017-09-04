@@ -3,7 +3,7 @@
 
 ## Succeeded by Kadopon Village...
 Fundamental implementation issues mean this repository is now obsolete;
-check out the Redux/React implementation [here](https://github.com/chocolatemelt/dokapon-no-koukeisha.git). Keeping this around for legacy (and as a fond reminder of my freshman days).
+check out the Redux/React implementation [here](https://github.com/parkt2/kadopon-village). Keeping this around for legacy (and as a fond reminder of my freshman days).
 
 ## Concept
 
